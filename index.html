@@ -3,16 +3,6 @@ layout: default
 ---
 
 <style>
-  .hero {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    color: white;
-    padding: 50px 20px;
-    text-align: center;
-    border-bottom: 4px solid #ff7e5f;
-  }
-  .hero p {
-    font-size: 1.2em;
-  }
   .content {
     margin: 20px auto;
     max-width: 800px;
@@ -57,10 +47,6 @@ layout: default
   }
 </style>
 
-<div class="hero">
-  <p>I'm Tal Sitton, a software developer passionate about creating useful applications.</p>
-</div>
-
 <div class="content">
   <h2>About Me</h2>
 
@@ -90,30 +76,34 @@ layout: default
       const repos = await response.json();
       const projectsDiv = document.getElementById('projects');
 
+      // Blacklist array
+      const blacklist = ['tal-sitton', 'tests'];
+
       // Sort repos by updated_at date
-      repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+      repos
+        .filter(repo => !blacklist.some(term => repo.name.toLowerCase().includes(term)))
+        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+        .forEach(repo => {
+          const projectDiv = document.createElement('div');
+          projectDiv.className = 'project';
+          projectDiv.onclick = () => window.location.href = repo.homepage || repo.html_url;
+          
+          const projectTitle = document.createElement('h3');
+          projectTitle.textContent = repo.name;
+          projectDiv.appendChild(projectTitle);
+          
+          const projectDescription = document.createElement('p');
+          projectDescription.textContent = repo.description || 'No description available.';
+          projectDiv.appendChild(projectDescription);
 
-      repos.forEach(repo => {
-        const projectDiv = document.createElement('div');
-        projectDiv.className = 'project';
-        projectDiv.onclick = () => window.location.href = repo.homepage || repo.html_url;
-        
-        const projectTitle = document.createElement('h3');
-        projectTitle.textContent = repo.name;
-        projectDiv.appendChild(projectTitle);
-        
-        const projectDescription = document.createElement('p');
-        projectDescription.textContent = repo.description || 'No description available.';
-        projectDiv.appendChild(projectDescription);
+          const projectLink = document.createElement('a');
+          projectLink.href = repo.homepage || repo.html_url;
+          projectLink.textContent = 'View Repository';
+          projectLink.target = '_blank';
+          projectDiv.appendChild(projectLink);
 
-        const projectLink = document.createElement('a');
-        projectLink.href = repo.homepage || repo.html_url;
-        projectLink.textContent = 'View Repository';
-        projectLink.target = '_blank';
-        projectDiv.appendChild(projectLink);
-
-        projectsDiv.appendChild(projectDiv);
-      });
+          projectsDiv.appendChild(projectDiv);
+        });
     } catch (error) {
       console.error('Error fetching repositories:', error);
     }
