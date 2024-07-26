@@ -3,33 +3,102 @@ layout: default
 title: Home
 ---
 
-# Welcome to My Official Site
+<style>
+  .hero {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+  }
+  .hero h1 {
+    margin: 0;
+    font-size: 3em;
+  }
+  .content {
+    margin: 20px auto;
+    max-width: 800px;
+    line-height: 1.6;
+  }
+  .projects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .project {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 45%;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+  }
+  .project h3 {
+    margin-top: 0;
+  }
+</style>
 
-## About Me
+<div class="hero">
+  <h1>Welcome to My Official Site</h1>
+  <p>I'm Tal Sitton, a software developer passionate about creating useful applications.</p>
+</div>
 
-Hi, I'm Tal Sitton, a passionate software developer dedicated to creating applications that make life easier and more enjoyable. With a strong foundation in Python and other programming languages, I love building projects that showcase my skills and creativity.
+<div class="content">
+  ## About Me
 
-### Professional Background
+  Hi, I'm Tal Sitton, a passionate software developer dedicated to creating applications that make life easier and more enjoyable. With a strong foundation in Python and other programming languages, I love building projects that showcase my skills and creativity.
 
-My expertise lies in full-stack development, where I blend front-end and back-end technologies to craft cohesive and efficient applications. I am committed to continuous learning and improvement, always on the lookout for innovative solutions and new technologies.
+  ### Professional Background
 
-### Personal Interests
+  My expertise lies in full-stack development, where I blend front-end and back-end technologies to craft cohesive and efficient applications. I am committed to continuous learning and improvement, always on the lookout for innovative solutions and new technologies.
 
-When I'm not coding, I enjoy exploring the latest trends in software development and diving into new technologies. I have a particular interest in artificial intelligence and machine learning, and I'm always thinking about how these technologies can solve real-world problems.
+  ### Personal Interests
 
-### Projects
+  When I'm not coding, I enjoy exploring the latest trends in software development and diving into new technologies. I have a particular interest in artificial intelligence and machine learning, and I'm always thinking about how these technologies can solve real-world problems.
 
-While I work on various projects, here are a few highlights:
+  ### Projects
 
-- **Movie Time**: This app is designed to save cinema-goers time by consolidating movie listings from multiple cinemas. Users can filter by specific cinemas and showtimes.
-  - [Movie Time Repository](https://github.com/tal-sitton/Movie-Time)
-  - [Movie Time Server Repository](https://github.com/tal-sitton/Movie-Time-Server)
+  Here are a few highlights of my work:
 
-- **Your Next Game**: This AI-driven recommendation system suggests the next game to play based on user preferences and Metacritic reviews.
-  - [Your Next Game Repository](https://github.com/tal-sitton/Your-Next-Game)
+  <div class="projects" id="projects"></div>
 
-## Get in Touch
+  ## Get in Touch
 
-I'm always open to new opportunities and collaborations. Feel free to explore my projects on GitHub and connect with me for any professional inquiries or discussions about technology.
+  I'm always open to new opportunities and collaborations. Feel free to explore my projects on GitHub and connect with me for any professional inquiries or discussions about technology.
 
-- **GitHub**: [My GitHub Profile](https://github.com/tal-sitton)
+  - **GitHub**: [My GitHub Profile](https://github.com/tal-sitton)
+</div>
+
+<script>
+  async function fetchRepos() {
+    try {
+      const response = await fetch('https://api.github.com/users/tal-sitton/repos');
+      const repos = await response.json();
+      const projectsDiv = document.getElementById('projects');
+      
+      repos.forEach(repo => {
+        const projectDiv = document.createElement('div');
+        projectDiv.className = 'project';
+        
+        const projectTitle = document.createElement('h3');
+        projectTitle.textContent = repo.name;
+        projectDiv.appendChild(projectTitle);
+        
+        const projectDescription = document.createElement('p');
+        projectDescription.textContent = repo.description || 'No description available.';
+        projectDiv.appendChild(projectDescription);
+        
+        const projectLink = document.createElement('a');
+        projectLink.href = repo.html_url;
+        projectLink.textContent = 'View Repository';
+        projectDiv.appendChild(projectLink);
+        
+        projectsDiv.appendChild(projectDiv);
+      });
+    } catch (error) {
+      console.error('Error fetching repositories:', error);
+    }
+  }
+  
+  fetchRepos();
+</script>
