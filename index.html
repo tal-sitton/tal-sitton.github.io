@@ -10,11 +10,6 @@ layout: default
     text-align: center;
     border-bottom: 4px solid #ff7e5f;
   }
-  .hero h1 {
-    margin: 0;
-    font-size: 3em;
-    font-family: 'Arial', sans-serif;
-  }
   .hero p {
     font-size: 1.2em;
   }
@@ -38,6 +33,8 @@ layout: default
     width: 45%;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-align: center;
   }
   .project:hover {
     transform: scale(1.05);
@@ -46,6 +43,9 @@ layout: default
   .project h3 {
     margin-top: 0;
     color: #ff7e5f;
+  }
+  .project p {
+    margin-bottom: 10px;
   }
   .project a {
     color: #feb47b;
@@ -88,15 +88,15 @@ layout: default
     try {
       const response = await fetch('https://api.github.com/users/tal-sitton/repos');
       const repos = await response.json();
-      
-      // Sort repositories by creation date (newest first)
-      repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-      
       const projectsDiv = document.getElementById('projects');
-      
+
+      // Sort repos by updated_at date
+      repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
       repos.forEach(repo => {
         const projectDiv = document.createElement('div');
         projectDiv.className = 'project';
+        projectDiv.onclick = () => window.location.href = repo.homepage || repo.html_url;
         
         const projectTitle = document.createElement('h3');
         projectTitle.textContent = repo.name;
@@ -105,12 +105,13 @@ layout: default
         const projectDescription = document.createElement('p');
         projectDescription.textContent = repo.description || 'No description available.';
         projectDiv.appendChild(projectDescription);
-        
+
         const projectLink = document.createElement('a');
-        projectLink.href = repo.html_url;
+        projectLink.href = repo.homepage || repo.html_url;
         projectLink.textContent = 'View Repository';
+        projectLink.target = '_blank';
         projectDiv.appendChild(projectLink);
-        
+
         projectsDiv.appendChild(projectDiv);
       });
     } catch (error) {
@@ -120,4 +121,3 @@ layout: default
   
   fetchRepos();
 </script>
-
