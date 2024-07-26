@@ -1,6 +1,5 @@
 ---
 layout: default
-title: Home
 ---
 
 <style>
@@ -9,15 +8,21 @@ title: Home
     color: white;
     padding: 50px 20px;
     text-align: center;
+    border-bottom: 4px solid #ff7e5f;
   }
   .hero h1 {
     margin: 0;
     font-size: 3em;
+    font-family: 'Arial', sans-serif;
+  }
+  .hero p {
+    font-size: 1.2em;
   }
   .content {
     margin: 20px auto;
     max-width: 800px;
     line-height: 1.6;
+    font-family: 'Arial', sans-serif;
   }
   .projects {
     display: flex;
@@ -32,41 +37,50 @@ title: Home
     padding: 20px;
     width: 45%;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .project:hover {
+    transform: scale(1.05);
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2);
   }
   .project h3 {
     margin-top: 0;
+    color: #ff7e5f;
+  }
+  .project a {
+    color: #feb47b;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .project a:hover {
+    text-decoration: underline;
   }
 </style>
 
 <div class="hero">
-  <h1>Welcome to My Official Site</h1>
   <p>I'm Tal Sitton, a software developer passionate about creating useful applications.</p>
 </div>
 
 <div class="content">
-  ## About Me
+  <h2>About Me</h2>
 
-  Hi, I'm Tal Sitton, a passionate software developer dedicated to creating applications that make life easier and more enjoyable. With a strong foundation in Python and other programming languages, I love building projects that showcase my skills and creativity.
+  <p>Hi, I'm Tal Sitton, a passionate software developer dedicated to creating applications that make life easier and more enjoyable. With a strong foundation in Python and other programming languages, I love building projects that showcase my skills and creativity.</p>
 
-  ### Professional Background
+  <h3>Professional Background</h3>
+  <p>My expertise lies in full-stack development, where I blend front-end and back-end technologies to craft cohesive and efficient applications. I am committed to continuous learning and improvement, always on the lookout for innovative solutions and new technologies.</p>
 
-  My expertise lies in full-stack development, where I blend front-end and back-end technologies to craft cohesive and efficient applications. I am committed to continuous learning and improvement, always on the lookout for innovative solutions and new technologies.
+  <h3>Personal Interests</h3>
+  <p>When I'm not coding, I enjoy exploring the latest trends in software development and diving into new technologies. I have a particular interest in artificial intelligence and machine learning, and I'm always thinking about how these technologies can solve real-world problems.</p>
 
-  ### Personal Interests
-
-  When I'm not coding, I enjoy exploring the latest trends in software development and diving into new technologies. I have a particular interest in artificial intelligence and machine learning, and I'm always thinking about how these technologies can solve real-world problems.
-
-  ### Projects
-
-  Here are a few highlights of my work:
-
+  <h3>Projects</h3>
   <div class="projects" id="projects"></div>
 
-  ## Get in Touch
+  <h3>Get in Touch</h3>
+  <p>I'm always open to new opportunities and collaborations. Feel free to explore my projects on GitHub and connect with me for any professional inquiries or discussions about technology.</p>
 
-  I'm always open to new opportunities and collaborations. Feel free to explore my projects on GitHub and connect with me for any professional inquiries or discussions about technology.
-
-  - **GitHub**: [My GitHub Profile](https://github.com/tal-sitton)
+  <ul>
+    <li><strong>GitHub</strong>: <a href="https://github.com/tal-sitton">My GitHub Profile</a> 🚀</li>
+  </ul>
 </div>
 
 <script>
