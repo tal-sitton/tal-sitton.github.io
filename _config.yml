@@ -5,7 +5,3 @@ baseurl: ""
 url: "https://code.sitton.dev"
 author: 
   name: "Tal Sitton"
-
-navigation:
-    - title: Projects
-      url: /index.html#Projects
