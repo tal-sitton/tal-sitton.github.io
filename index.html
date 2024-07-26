@@ -19,7 +19,7 @@ title: Tal Sitton
   }
 
   .project {
-    background: #3f934d59;
+    background: #15995740;
     border-radius: 8px;
     padding: 20px;
     width: 45%;
@@ -55,13 +55,13 @@ title: Tal Sitton
 </style>
 
 <div class="content">
-  <h2>About Me</h2>
+  <h2 id="About">About Me</h2>
 
   <p>Hi, I'm Tal Sitton, a passionate software developer dedicated to creating applications that make life easier and
     more enjoyable. With a strong foundation in Python and other programming languages, I love building projects that
     showcase my skills and creativity.</p>
 
-  <h3> 📈 Github Stats </h3>
+  <h3 id="Stats"> 📈 Github Stats </h3>
   <p>
     <img height="150em"
       src="https://github-readme-stats.vercel.app/api?username=tal-sitton&show_icons=true&hide_border=true&count_private=true&theme=tokyonight" />
@@ -69,19 +69,19 @@ title: Tal Sitton
       src="https://github-readme-stats.vercel.app/api/top-langs/?username=tal-sitton&show_icons=true&hide_border=true&layout=compact&theme=tokyonight" />
   </p>
 
-  <h3>Professional Background</h3>
+  <h3 id="Background">Professional Background</h3>
   <p>My expertise lies in full-stack development, where I blend front-end and back-end technologies to craft cohesive
     and efficient applications. I am committed to continuous learning and improvement, always on the lookout for
     innovative solutions and new technologies.</p>
 
-  <h3>Personal Interests</h3>
+  <h3 id="Interests">Personal Interests</h3>
   <p>When I'm not coding, I enjoy exploring the latest trends in software development and diving into new technologies.
     I solve problems I encounter in my everyday life using code.</p>
 
   <h3 id="Projects">Projects</h3>
   <div class="projects" id="projects"></div>
 
-  <h3>Get in Touch</h3>
+  <h3 id="Contact">Get in Touch</h3>
   <p>I'm always open to new opportunities and collaborations. Feel free to explore my projects on GitHub and connect
     with me for any professional inquiries or discussions about technology.</p>
 
@@ -107,7 +107,15 @@ title: Tal Sitton
         .forEach(repo => {
           const projectDiv = document.createElement('div');
           projectDiv.className = 'project';
-          projectDiv.onclick = () => window.location.href = repo.homepage || repo.html_url;
+          projectDiv.dataset.url = repo.homepage || repo.html_url;
+
+          projectDiv.onmousedown = (event) => {
+            if (event.button === 0) { // Left click
+              window.location.href = projectDiv.dataset.url;
+            } else if (event.button === 1) { // Middle click
+              window.open(projectDiv.dataset.url, '_blank');
+            }
+          };
 
           const projectTitle = document.createElement('h3');
           projectTitle.textContent = repo.name;
