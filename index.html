@@ -1,3 +1,8 @@
+---
+layout: default
+title: Tal Sitton
+---
+
 <style>
   .content {
     margin: 20px auto;
@@ -20,6 +25,7 @@
     width: 45%;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
     text-align: center;
   }
 
@@ -38,17 +44,12 @@
   }
 
   .project a {
-    display: block;
     color: #feb47b;
     text-decoration: none;
     font-weight: bold;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #e0f7fa;
   }
 
   .project a:hover {
-    background-color: #b2ebf2;
     text-decoration: underline;
   }
 </style>
@@ -106,14 +107,22 @@
         .forEach(repo => {
           const projectDiv = document.createElement('div');
           projectDiv.className = 'project';
+          projectDiv.onclick = () => window.location.href = repo.homepage || repo.html_url;
+
+          const projectTitle = document.createElement('h3');
+          projectTitle.textContent = repo.name;
+          projectDiv.appendChild(projectTitle);
+
+          const projectDescription = document.createElement('p');
+          projectDescription.textContent = repo.description || 'No description available.';
+          projectDiv.appendChild(projectDescription);
 
           const projectLink = document.createElement('a');
           projectLink.href = repo.homepage || repo.html_url;
+          projectLink.textContent = 'View Repository';
           projectLink.target = '_blank';
-          projectLink.textContent = repo.name;
-          projectLink.title = repo.description || 'No description available.';
-
           projectDiv.appendChild(projectLink);
+
           projectsDiv.appendChild(projectDiv);
         });
     } catch (error) {
