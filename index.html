@@ -107,7 +107,7 @@ title: Tal Sitton
         .forEach(repo => {
           const projectDiv = document.createElement('div');
           projectDiv.className = 'project';
-          projectDiv.onclick = () => window.location.href = repo.homepage || repo.html_url;
+          projectDiv.onclick = () => window.open(repo.homepage || repo.html_url);
 
           const projectTitle = document.createElement('h3');
           projectTitle.textContent = repo.name;
@@ -118,7 +118,7 @@ title: Tal Sitton
           projectDiv.appendChild(projectDescription);
 
           const projectLink = document.createElement('a');
-          projectLink.href = repo.homepage || repo.html_url;
+          projectLink.href = repo.html_url;
           projectLink.textContent = 'View Repository';
           projectLink.target = '_blank';
           projectDiv.appendChild(projectLink);
