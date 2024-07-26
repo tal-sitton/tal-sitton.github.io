@@ -1,6 +1,6 @@
 title: "Tal Sitton - Software Developer"
 description: "Welcome to my portfolio! I'm Tal Sitton, a passionate software developer with a focus on full-stack applications and innovative solutions. Explore my projects to see how I blend creativity and technology to build impactful solutions."
-remote_theme: "mmistakes/minimal-mistakes@4.26.2"
+theme: "jekyll-theme-cayman"
 baseurl: ""
 url: "https://code.sitton.dev"
 author: 
