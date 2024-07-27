@@ -1,9 +1,14 @@
-title: "Tal Sitton - Software Developer"
-description: "Welcome to my portfolio! I'm Tal Sitton, a passionate software developer with a focus on full-stack applications and innovative solutions. Explore my projects to see how I blend creativity and technology to build impactful solutions."
 remote_theme: tuur29/pages-themes-cayman
+title: Tal Sitton - Software Developer
+description: "A passionate software developer focusing on full-stack applications and innovative solutions"
+markdown: kramdown
+
+color:
+  gradient_left: "#C8D6E5"
+  gradient_right: "#8AE9B3"
+  
 darkmode: true
 syntax_theme: https://stylishthemes.github.io/Syntax-Themes/pygments/css-github/pygments-monokai.css
-baseurl: ""
-url: "https://code.sitton.dev"
+
 author: 
   name: "Tal Sitton"
