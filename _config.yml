@@ -4,8 +4,8 @@ description: "A passionate software developer focusing on full-stack application
 markdown: kramdown
 
 color:
-  gradient_left: "#C8D6E5"
-  gradient_right: "#8AE9B3"
+  gradient_left: "#74D680"
+  gradient_right: "#378B29"
   
 darkmode: true
 syntax_theme: https://stylishthemes.github.io/Syntax-Themes/pygments/css-github/pygments-monokai.css
